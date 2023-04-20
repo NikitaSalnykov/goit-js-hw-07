@@ -2,15 +2,19 @@ import { galleryItems } from './gallery-items.js';
 // Change code below this line
 
 
-const galleryList = document.querySelector('gallery')
+const galleryList = document.querySelector('.gallery')
 
-const photo = galleryItems.map((photo) => 
+const photos = galleryItems.map((photo) => 
   `
-  <li>
-  <img url=${photo.preview} alt=${photo.description}>
+  <li class="gallery__item" >
+  <a class="gallery__link">
+  <img class="gallery__image" src=${photo.preview} alt='${photo.description}'>
+  </a>
   </li>
   `
 ).join("")
-console.log(photo);
  
-galleryList = 
+galleryList.insertAdjacentHTML("afterbegin", photos)
+console.log(galleryList);
+
+galleryList.
