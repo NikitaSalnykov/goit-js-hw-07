@@ -37,29 +37,24 @@ function onPreviewImage (event) {
     }
     
     const instance = basicLightbox.create(
-    `<img src='${photo.original}' width="800" height="600">`)
+      `<img src='${photo.original}' width="800" height="600">`, 
+    {
+      onShow: (instance) => {
+      window.addEventListener('keydown', onEscapeKey)  
+      },
+      onClose: (instance) => {
+      window.removeEventListener('keydown', onEscapeKey)
+      }
+      })
+    
     instance.show()
 
-
+    function onEscapeKey(event) {
+        if (event.code === 'Escape') {
+    instance.close()
+    console.log('KAWABANGA');
+  }
+    }
 
   })
 }
-
-document.addEventListener('keydown', onEscapeKey)
-
-function onEscapeKey(event) {
-  const moduleImg = document.querySelector('.basicLightbox')
-  if (event.code === 'Escape' && moduleImg) {
-    moduleImg.remove(galleryList)
-    console.log('KAWABANGA');
-  }
-}
-
-// document.addEventListener('keydown', onEscapeKey) 
-
-// function onEscapeKey(event) {
-//   const moduleImg = document.querySelector('.basicLightbox')
-//   if (event.code === 'Escape' && moduleImg) {
-//  document.addEventListener('click', handleClick)
-//   }
-// }
