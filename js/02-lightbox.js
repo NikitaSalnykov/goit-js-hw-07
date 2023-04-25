@@ -16,8 +16,13 @@ const photos = galleryItems.map((photo) =>
  
 galleryList.insertAdjacentHTML("afterbegin", photos)
 
-galleryList.addEventListener('click', onPreviewImage, true)
+galleryList.addEventListener('click', onPreviewImage)
 
+  const lightbox = new SimpleLightbox('.gallery a',
+    {
+      captionsData: 'alt',
+      captionDelay: 250
+ });
 
 function onPreviewImage(event) {
   event.preventDefault()
@@ -26,6 +31,6 @@ function onPreviewImage(event) {
     return
   }
 
-const lightbox = new SimpleLightbox('.gallery a', { /* options */ });
 
 }
+
